@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalaam Flour Mills - Premium Quality Flour</title>
+    
+    <!-- Dynamic Favicon using SVG Data URI matching Logo -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,15 C55,30 45,45 50,65 C55,45 45,30 50,15 Z' fill='%23D9A74A'/%3E%3Cpath d='M35,25 C43,35 40,50 48,68 C40,53 33,38 35,25 Z' fill='%23EAB308'/%3E%3Cpath d='M65,25 C57,35 60,50 52,68 C60,53 67,38 65,25 Z' fill='%23EAB308'/%3E%3Crect x='46' y='68' width='8' height='18' rx='4' fill='%231E293B'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Variables for Premium Industrial Theme */
+        :root {
+            --primary: #D9A74A; /* Wheat Gold */
+            --primary-light: #F59E0B;
+            --secondary: #1E293B; /* Industrial Slate */
+            --accent: #10B981; /* Sustainability Green */
+            --bg-light: #F8FAFC;
+            --bg-pure: #FFFFFF;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --font-heading: 'Cabinet Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Utility Components */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background-color: var(--primary);
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(217, 167, 74, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: var(--secondary);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(30, 41, 59, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        /* Professional Logo Vector Icon Structure */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(217, 167, 74, 0.3);
+        }
+
+        .logo-icon i {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after, nav ul li a.active::after {
+            width: 100%;
+        }
+
+        /* SPA Pages System */
+        .page {
+            display: none;
+            padding-top: 130px;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HOME PAGE STYLES */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            line-height: 1.05;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 580px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.15);
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 6rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-pure);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        /* ABOUT PAGE STYLES */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            padding-bottom: 6rem;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* PRODUCTS PAGE STYLES */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+            margin-bottom: 6rem;
+        }
+
+        .product-card {
+            background: var(--bg-pure);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-tag {
+            background: rgba(219, 167, 74, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .product-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* PROCESS PAGE STYLES */
+        .process-flow {
+            margin: 4rem 0 7rem 0;
+        }
+
+        .process-step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+
+        .process-step:nth-child(even) {
+            direction: rtl;
+        }
+
+        .process-step:nth-child(even) .process-text-side {
+            direction: ltr;
+        }
+
+        .process-step-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .step-number {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            color: rgba(217, 167, 74, 0.2);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        /* GALLERY PAGE STYLES */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 280px;
+            gap: 1.5rem;
+            margin: 3rem 0 6rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+
+        .gallery-item.wide { grid-column: span 2; }
+        .gallery-item.tall { grid-row: span 2; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15,23,42,0.8), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay p {
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        /* CONTACT PAGE STYLES */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 5rem;
+            margin: 3rem 0 6rem 0;
+        }
+
+        .contact-info-panel {
+            background: var(--secondary);
+            color: white;
+            padding: 3.5rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info-panel h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            background: var(--bg-pure);
+            padding: 4rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #E2E8F0;
+            border-radius: 10px;
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(217, 167, 74, 0.15);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4rem 0 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-logo-text {
+            color: white;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h4 {
+            color: white;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero, .about-section, .process-step, .contact-wrapper {
+                grid-template-columns: 1fr !important;
+                gap: 3rem;
+            }
+            .process-step { direction: ltr !important; }
+            .features-grid, .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
+            .gallery-item.wide, .gallery-item.tall { grid-column: span 1; grid-row: span 1; }
+        }
+
+        @media (max-width: 640px) {
+            .features-grid, .products-grid, .gallery-grid, .footer-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 3rem; }
+            nav ul { display: none; } /* Simplified for layout focus */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a onclick="navigateTo('home')" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                </div>
+                <div class="logo-text">KALAAM FLOUR<span> MILLS</span></div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a id="nav-home" onclick="navigateTo('home')" class="active">Home</a></li>
+                    <li><a id="nav-about" onclick="navigateTo('about')">About Us</a></li>
+                    <li><a id="nav-products" onclick="navigateTo('products')">Products</a></li>
+                    <li><a id="nav-process" onclick="navigateTo('process')">Milling Process</a></li>
+                    <li><a id="nav-gallery" onclick="navigateTo('gallery')">Gallery</a></li>
+                    <li><a id="nav-contact" onclick="navigateTo('contact')">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PAGE 1: HOME -->
+    <main id="home" class="page active-page">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="badge">
+                        <i class="fa-solid fa-solar-panel"></i> 100% Sustainably Powered Factory
+                    </div>
+                    <h1>Pure Wheat. <br>Modern <span>Milling.</span></h1>
+                    <p>Kalaam Flour Mills delivers premium grade wheat products processed through advanced technological automation, ensuring the highest level of hygiene and nutrition for your family.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a onclick="navigateTo('products')" class="btn">Explore Products <i class="fa-solid fa-arrow-right"></i></a>
+                        <a onclick="navigateTo('process')" class="btn btn-outline">Our Process</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="Gemini_Generated_Image_n70eqcn70eqcn70e.png" alt="Kalaam Flour Mills Exterior" class="hero-img">
+                </div>
+            </div>
+
+            <!-- Core Highlights Grid -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-gears"></i>
+                    <h3>Fully Automated</h3>
+                    <p>Zero human touch state-of-the-art European machinery setups ensuring uncompromised purity.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h3>Premium Selection</h3>
+                    <p>Only the finest high-grain wheat yields are selected across verified local agricultural sectors.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h3>Eco-Friendly Setup</h3>
+                    <p>Our facility runs cleanly on custom rooftop heavy solar grids, optimizing dynamic efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PAGE 2: ABOUT US -->
+    <div id="about" class="page">
+        <div class="container">
+            <div class="about-section">
+                <div>
+                    <img src="Gemini_Generated_Image_88i0ff88i0ff88i0.png" alt="Advanced Machinery Row" class="about-img">
+                </div>
+                <div>
+                    <h2 class="section-title">Nurturing Generations With Pure Trust</h2>
+                    <p class="section-desc">Established with a vision to redefine flour milling industry standards, Kalaam Flour Mills blends classic traditional values with the absolute pinnacle of technological evolution.</p>
+                    <p class="section-desc">Our facility houses complex pneumatic systems, advanced roller mills, and smart distribution channels. We monitor every variable from grain temperature to structural moisture percentages meticulously to bring out elite products consistently.</p>
+                    <div style="margin-top: 2rem;">
+                        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+                            <i class="fa-solid fa-circle-check" style="color:var(--primary); font-size:1.3rem;"></i>
+                            <strong>ISO 22000 Certified Operations Standards</strong>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem;">
+                            <i class="fa-solid fa-circle-check" style="color:var(--primary); font-size:1.3rem;"></i>
+                            <strong>Eco-Friendly Green Manufacturing Footprint</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: PRODUCTS -->
+    <div id="products" class="page">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem auto;">
+                <h2 class="section-title">Our Premium Product Range</h2>
+                <p class="section-desc">Finely milled configurations designed carefully to cater to high-end households, industrial commercial bakeries, and culinary specialists.</p>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="Gemini_Generated_Image_88i0ff88i0ff88i0 (1).png" alt="Premium Wheat Flour Bags" class="product-img">
+                    <div class="product-info">
+                        <span class="product-tag">Household Choice</span>
+                        <h3>Premium Wheat Flour</h3>
+                        <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1.5rem;">Perfectly balanced traditional whole wheat flour rich in natural dietary fiber and essential minerals.</p>
+                        <a onclick="navigateTo('contact')" class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size:0.9rem;">Order Details</a>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="Gemini_Generated_Image_ilgtg7ilgtg7ilgt (1).png" alt="Fine Quality Maida Product" class="product-img">
+                    <div class="product-info">
+                        <span class="product-tag">Bakery Grade</span>
+                        <h3>Super Fine Maida</h3>
+                        <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1.5rem;">Highly refined wheat structure excellent for light fluffy pastries, flaky croissants, and breads.</p>
+                        <a onclick="navigateTo('contact')" class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size:0.9rem;">Order Details</a>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="Gemini_Generated_Image_ilgtg7ilgtg7ilgt.png" alt="Chakka Atta Sacks" class="product-img">
+                    <div class="product-info">
+                        <span class="product-tag">100% Organic</span>
+                        <h3>Chakki Atta</h3>
+                        <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1.5rem;">Stone-ground texture parameters preserving core wheat germ value for authentic nutritious soft rotis.</p>
+                        <a onclick="navigateTo('contact')" class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size:0.9rem;">Order Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: MILLING PROCESS -->
+    <div id="process" class="page">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto 4rem auto;">
+                <h2 class="section-title">The Automated Milling Journey</h2>
+                <p class="section-desc">Witness how raw organic wheat turns safely into beautiful fine-grade culinary flour inside our fully automated mill systems.</p>
+            </div>
+
+            <div class="process-flow">
+                <!-- Step 1 -->
+                <div class="process-step">
+                    <div>
+                        <span class="step-number">01</span>
+                        <h3 style="font-family:var(--font-heading); font-size:2rem; color:var(--secondary); margin:1rem 0;">Advanced Pneumatic Intake</h3>
+                        <p style="color:var(--text-muted);">Grains pass through strategic multi-tiered pneumatic lifters and magnetic separators that completely isolate contaminants instantly, guaranteeing clean streams.</p>
+                    </div>
+                    <img src="Gemini_Generated_Image_ilgtg7ilgtg7ilgt (2).png" alt="Pneumatic Systems" class="process-step-img">
+                </div>
+
+                <!-- Step 2 -->
+                <div class="process-step">
+                    <div>
+                        <span class="step-number">02</span>
+                        <h3 style="font-family:var(--font-heading); font-size:2rem; color:var(--secondary); margin:1rem 0;">Precision Roller Crushing</h3>
+                        <p style="color:var(--text-muted);">The pure wheat enters complex high-speed roller decks. Here pressure settings are modulated dynamically to separate endosperm components symmetrically without losing core nutrients.</p>
+                    </div>
+                    <img src="Gemini_Generated_Image_88i0ff88i0ff88i0 (2).png" alt="Roller Mills Operations" class="process-step-img">
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-step">
+                    <div>
+                        <span class="step-number">03</span>
+                        <h3 style="font-family:var(--font-heading); font-size:2rem; color:var(--secondary); margin:1rem 0;">Purity Packaging & Weight Verification</h3>
+                        <p style="color:var(--text-muted);">Automated scales drop identical measurements cleanly into reinforced protective bags. Final check-benches lock and code units sequentially before secure warehousing placement.</p>
+                    </div>
+                    <img src="Gemini_Generated_Image_n70eqcn70eqcn70e (1).png" alt="Packaging Operations Area" class="process-step-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: GALLERY -->
+    <div id="gallery" class="page">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto 2rem auto;">
+                <h2 class="section-title">Inside Our Milling Facility</h2>
+                <p class="section-desc">A visual glimpse into our hygienic workspaces, mechanical units, automated storage divisions, and workforce.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item wide">
+                    <img src="Gemini_Generated_Image_n70eqcn70eqcn70e.png" alt="Factory Front View">
+                    <div class="gallery-overlay"><p>Sustainably Powered Infrastructure</p></div>
+                </div>
+                <div class="gallery-item tall">
+                    <img src="Gemini_Generated_Image_88i0ff88i0ff88i0.png" alt="Industrial Processing Mill Line">
+                    <div class="gallery-overlay"><p>Automated Milling Bay</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Gemini_Generated_Image_ilgtg7ilgtg7ilgt (2).png" alt="Advanced Air Pipes Flow">
+                    <div class="gallery-overlay"><p>Mechanical Frameworks</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Gemini_Generated_Image_88i0ff88i0ff88i0 (1).png" alt="Stored Flour Stock Rows">
+                    <div class="gallery-overlay"><p>Premium Stock Sacks</p></div>
+                </div>
+                <div class="gallery-item wide">
+                    <img src="Gemini_Generated_Image_n70eqcn70eqcn70e (1).png" alt="Staff Management Control Area">
+                    <div class="gallery-overlay"><p>Quality Control Checking</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 6: CONTACT -->
+    <div id="contact" class="page">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem auto;">
+                <h2 class="section-title">Get In Touch With Us</h2>
+                <p class="section-desc">Connect with our corporate trade sales department for customized commercial distribution orders or franchise supply contracts.</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info-panel">
+                    <h3>Headquarters Info</h3>
+                    <p style="color:rgba(255,255,255,0.7); margin-bottom:2.5rem;">Reach out through our standard physical corporate mail desks or secure phone dial networks listed here.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <h4 style="color:white; font-size:1.1rem;">Factory Address</h4>
+                                <p style="color:rgba(255,255,255,0.7); font-size:0.95rem;">Plot No C-95, Islamabad Industrial Zone, Islamabad, Pakistan</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <h4 style="color:white; font-size:1.1rem;">Tel</h4>
+                                <p style="color:rgba(255,255,255,0.7); font-size:0.95rem;">487309</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-fax"></i>
+                            <div>
+                                <h4 style="color:white; font-size:1.1rem;">Fax</h4>
+                                <p style="color:rgba(255,255,255,0.7); font-size:0.95rem;">486729</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <h4 style="color:white; font-size:1.1rem;">Official Email</h4>
+                                <p style="color:rgba(255,255,255,0.7); font-size:0.95rem;">kalaamflourmills@atomicmail.io</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label>Full Name / Company Name</label>
+                            <input type="text" class="form-control" placeholder="John Doe / Elite Bakery Group" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Required Product Category</label>
+                            <select class="form-control" style="background-color: white;">
+                                <option>Premium Whole Wheat Flour</option>
+                                <option>Super Fine Maida (Fine Grade)</option>
+                                <option>Chakki Fine Atta</option>
+                                <option>Bulk Commercial Grain Supply</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Inquiry Message</label>
+                            <textarea class="form-control" rows="5" placeholder="Specify quantity requirements or distribution parameters..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%; justify-content: center; margin-top: 1rem;">Send Official Inquiry <i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Area -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo-text">KALAAM FLOUR<span style="color:var(--primary)"> MILLS</span></div>
+                    <p style="font-size:0.95rem; margin-bottom:1.5rem; max-width:320px;">Delivering high-integrity nutrition across global markets utilizing top-tier milling machinery assets.</p>
+                    <div style="display:flex; gap:1rem; font-size:1.2rem;">
+                        <a href="#" style="color:white; opacity:0.7;"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" style="color:white; opacity:0.7;"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" style="color:white; opacity:0.7;"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a onclick="navigateTo('home')">Home</a></li>
+                        <li><a onclick="navigateTo('about')">About Us</a></li>
+                        <li><a onclick="navigateTo('products')">Products Range</a></li>
+                        <li><a onclick="navigateTo('process')">Milling Process</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><p style="font-size:0.95rem; margin-bottom:0.75rem;"><i class="fa-solid fa-location-dot" style="color:var(--primary)"></i> Plot No C-95, Islamabad Industrial Zone, Islamabad, Pakistan</p></li>
+                        <li><p style="font-size:0.95rem; margin-bottom:0.5rem;"><i class="fa-solid fa-phone" style="color:var(--primary)"></i> Tel: 487309</p></li>
+                        <li><p style="font-size:0.95rem; margin-bottom:0.5rem;"><i class="fa-solid fa-fax" style="color:var(--primary)"></i> Fax: 486729</p></li>
+                        <li><p style="font-size:0.95rem;"><i class="fa-solid fa-envelope" style="color:var(--primary)"></i> kalaamflourmills@atomicmail.io</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kalaam Flour Mills. All Rights Reserved.</p>
+                <p>Designed with Professional Tech Specs</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Controllers for SPA Architecture Interactivity -->
+    <script>
+        function navigateTo(pageId) {
+            // Hide all pages active-page state
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+            });
+
+            // Show clicked page
+            const targetPage = document.getElementById(pageId);
+            if(targetPage) {
+                targetPage.classList.add('active-page');
+            }
+
+            // Update Navigation Menu Active State Indicators
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.getElementById('nav-' + pageId);
+            if(activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // Auto window scroll back to absolute top layout position
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert("Thank you! Your inquiry has been routed successfully to Kalaam Flour Mills trade desk. Our representative will contact you shortly.");
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
